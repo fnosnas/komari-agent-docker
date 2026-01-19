@@ -7,18 +7,18 @@ RUN apk add --no-cache ca-certificates curl \
 
 WORKDIR /opt/komari
 
-# 下载对应架构的二进制文件
+# 下载 Agent 二进制文件
 RUN curl -fsSL \
     https://github.com/komari-monitor/komari-agent/releases/latest/download/komari-agent-linux-${TARGETARCH:-amd64} \
     -o agent \
  && chmod +x agent
 
-# 定义默认环境变量（空值）
+# 对应你 Claw Cloud 截图中的 Key
 ENV DOMAIN=""
 ENV TOKEN=""
 
 RUN addgroup -S komari && adduser -S komari -G komari
 USER komari
 
-# 使用 sh -c 来确保环境变量被解析为启动参数
-ENTRYPOINT ["sh", "-c", "/opt/komari/agent --server ${DOMAIN} --token ${TOKEN}"]
+# 使用 sh -c 来执行命令，并将环境变量注入到正确的参数中 (-e 和 -t)
+ENTRYPOINT ["sh", "-c", "/opt/komari/agent -e ${DOMAIN} -t ${TOKEN}"]
