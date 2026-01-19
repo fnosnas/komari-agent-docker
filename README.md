@@ -1,6 +1,6 @@
 # Komari Agent Docker 镜像
 
-本项目用于构建 [Komari Monitor](https://github.com/komari-monitor/komari-agent) 的 Agent Docker 镜像。
+Fork本项目到你自己GitHub用于构建镜像,自己改个镜像名,用同名容器平台会GG
 
 ---
 
