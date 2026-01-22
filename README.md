@@ -1,7 +1,5 @@
 # Komari Agent Docker 镜像
 
-Fork本项目到你自己GitHub用于构建镜像,自己改个镜像名,用同名容器平台会GG
-
 ---
 
 ## ⚙️ 环境变量配置
