@@ -22,5 +22,5 @@ docker run -d \
   --restart always \
   --network host \
   -e DOMAIN="https://komari.example.com" \
-  -e TOKEN="your_token_here" \
+  -t TOKEN="your_token_here" \
   ghcr.io/fnosnas/komari-agent-docker/komari-agent:latest
