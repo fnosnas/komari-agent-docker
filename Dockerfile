@@ -2,7 +2,7 @@ FROM alpine:3.19
 
 ARG TARGETARCH
 
-RUN apk add --no-cache ca-certificates curl bash wget \
+RUN apk add --no-cache ca-certificates curl bash wget su-exec \
     && update-ca-certificates
 
 WORKDIR /opt/komari
@@ -13,7 +13,6 @@ ENV RESTART_DELAY=5
 ENV AGENT_VERSION=1.1.93
 
 RUN addgroup -S komari && adduser -S komari -G komari
-USER komari
 
 ENTRYPOINT ["bash", "-c", "\
 set -e; \
@@ -43,16 +42,15 @@ download_agent() { \
   echo '[INFO] Downloading Komari Agent version:' ${AGENT_VERSION}; \
   wget -q -O /opt/komari/agent \
   https://github.com/komari-monitor/komari-agent/releases/download/${AGENT_VERSION}/komari-agent-linux-${ARCH}; \
-  chmod +x /opt/komari/agent; \
+  chown komari:komari /opt/komari/agent; \
+  chmod 755 /opt/komari/agent; \
 }; \
 
-if [ ! -f /opt/komari/agent ]; then \
-  download_agent; \
-fi; \
+download_agent; \
 
 while true; do \
   echo '[INFO] Launching Komari Agent...'; \
-  /opt/komari/agent -e \"$DOMAIN\" -t \"$TOKEN\" & \
+  su-exec komari /opt/komari/agent -e \"$DOMAIN\" -t \"$TOKEN\" & \
   PID=$!; \
 
   while kill -0 $PID 2>/dev/null; do \
