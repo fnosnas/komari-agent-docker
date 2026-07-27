@@ -24,3 +24,16 @@ docker run -d \
   -e DOMAIN="https://komari.example.com" \
   -t TOKEN="your_token_here" \
   ghcr.io/fnosnas/komari-agent-docker/komari-agent:latest
+```
+
+用Node.js环境:   
+上传index.js  package.json    
+一键运行：   
+```
+node index.js
+```
+注：如果你希望让它在后台持续挂机、关闭终端也不会断开，可以使用 nohup 或者 pm2 来守护：
+```
+nohup node index.js > output.log 2>&1 &
+```
+
