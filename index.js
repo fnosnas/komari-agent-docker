@@ -59,8 +59,8 @@ function run(){
   console.log("✅ Komari 守护已启动");
 
   const p = spawn(AGENT,[
-    "-e","https://xxx.xxx.xxx",
-    "-t","xxxxxxxxxxxxxx"
+    "-e","",
+    "-t",""
   ],{
     stdio:["ignore","ignore","ignore"]
   });
