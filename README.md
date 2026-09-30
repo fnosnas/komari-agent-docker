@@ -14,21 +14,8 @@
 ---
 
 ## 🚀 启动命令
-
-### Docker Run
-```bash
-docker run -d \
-  --name komari-agent \
-  --restart always \
-  --network host \
-  -e DOMAIN="https://komari.example.com" \
-  -t TOKEN="your_token_here" \
-  ghcr.io/fnosnas/komari-agent-docker/komari-agent:latest
-```
-
-用Node.js环境:   
-上传index.js  package.json    
-一键运行：   
+  
+运行：   
 ```
 node index.js
 ```
