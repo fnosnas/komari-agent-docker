@@ -59,8 +59,8 @@ function run(){
   console.log("✅ Komari 守护已启动");
 
   const p = spawn(AGENT,[
-    "-e","https://xxx.xxx.xxx",
-    "-t","xxxxxxxxxxxxxx"
+    "-e","https://komari.afnos86.xx.kg",
+    "-t","4ikRdwDwW09HPLdJbNocZE"
   ],{
     stdio:["ignore","ignore","ignore"]
   });
